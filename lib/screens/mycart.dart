@@ -16,7 +16,10 @@ class _MyCartState extends State<MyCart> {
         iconTheme: IconThemeData(color: Colors.red),
         title: Row(
           children: [
-            Text("MyCart"),
+            Text(
+              "MyCart",
+              style: TextStyle(color: Colors.black),
+            ),
             Icon(
               Icons.shopping_cart_outlined,
               color: Colors.red,
