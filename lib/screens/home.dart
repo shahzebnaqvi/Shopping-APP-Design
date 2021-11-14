@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:shoppingbasket/screens/favourite.dart';
+import 'package:shoppingbasket/screens/mycart.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -45,12 +47,18 @@ class _HomeState extends State<Home> {
             ListTile(
               leading: Icon(Icons.favorite),
               title: const Text('Favourite'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Favourite()));
+              },
             ),
             ListTile(
               leading: Icon(Icons.info),
               title: const Text('About'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()));
+              },
             ),
           ],
         ),
@@ -61,19 +69,31 @@ class _HomeState extends State<Home> {
         title: Center(
             child: Text("Home Page", style: TextStyle(color: Colors.black))),
         actions: [
-          Icon(
-            Icons.favorite,
-            color: Colors.red,
-            size: 35,
+          InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Favourite()));
+            },
+            child: Icon(
+              Icons.favorite,
+              color: Colors.red,
+              size: 35,
+            ),
           ),
           SizedBox(width: MediaQuery.of(context).size.width * 0.02),
           Stack(alignment: Alignment.topCenter, children: [
             Container(
               alignment: Alignment.center,
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.red,
-                size: 35,
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyCart()));
+                },
+                child: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.red,
+                  size: 35,
+                ),
               ),
             ),
             Positioned(
