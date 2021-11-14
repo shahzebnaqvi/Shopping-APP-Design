@@ -26,13 +26,15 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            productcard(context, "30% off", Icon(Icons.favorite),
-                "Black T-Shirt", "\$50", Icon(Icons.favorite)),
-            productcard(context, "30% off", Icon(Icons.favorite),
-                "Black T-Shirt", "\$50", Icon(Icons.favorite)),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              productcard(context, "30% off", Icon(Icons.favorite),
+                  "Black T-Shirt", "\$50", Icon(Icons.shopping_cart)),
+              productcard(context, "30% off", Icon(Icons.favorite),
+                  "Black T-Shirt", "\$50", Icon(Icons.shopping_cart)),
+            ],
+          ),
         ));
   }
 }
@@ -41,7 +43,7 @@ Widget productcard(context, String dicount, Icon iconfavour, producttitle,
     productprice, Icon iconcart) {
   return Center(
     child: Container(
-      width: MediaQuery.of(context).size.width * 0.8,
+      width: MediaQuery.of(context).size.width * 0.9,
       margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
       child: Card(
         child: Container(
@@ -64,9 +66,13 @@ Widget productcard(context, String dicount, Icon iconfavour, producttitle,
                 ),
               ],
             ),
-            Image(
-              image: NetworkImage(
-                  "https://media.istockphoto.com/photos/front-of-men-cut-black-tshirt-isolated-on-white-background-picture-id1142212002?k=20&m=1142212002&s=612x612&w=0&h=KlgIb_GW0e6ZtIF5A4dxJ1n1KS19WV8Hpc8MpHkw6_o="),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://5.imimg.com/data5/HB/VQ/MY-44811379/men-black-plain-t-shirt-500x500.jpg"),
+                    fit: BoxFit.cover),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -47,10 +47,11 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 gape(context),
-                // Image(
-                //     image: AssetImage(
-                //   "../assets/images/12.gif",
-                // )),
+                Image.network(
+                  "https://bi-eticaret.com/img/cart.gif",
+                  height: 125.0,
+                  width: 125.0,
+                ),
                 gape(context),
                 TextField(
                   style: TextStyle(
