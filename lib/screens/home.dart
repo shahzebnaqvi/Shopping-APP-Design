@@ -33,11 +33,14 @@ class _HomeState extends State<Home> {
   }
 
   var gettext1 = "";
-var getvalue = "";
+  var getvalue = "";
   List producttitlelst = ["Black T-Shirt", "Blue Jeans"];
   List producttitlelstcart = [];
   submit() {
-    setState(() {producttitlelstcart.add(getvalue)});
+    setState(() {
+      producttitlelstcart.add(getvalue);
+      print(producttitlelstcart);
+    });
   }
 
   @override
@@ -168,7 +171,9 @@ var getvalue = "";
                         Icons.shopping_cart,
                         size: 30,
                       ),
-                      index,getvalue);
+                      index,
+                      getvalue,
+                      submit());
                 }),
           ],
         ),
@@ -201,7 +206,7 @@ var getvalue = "";
 }
 
 Widget productcard(context, String dicount, Icon iconfavour, producttitle,
-    productprice, Icon iconcart, getindex,getvalue) {
+    productprice, Icon iconcart, getindex, getvalue, submit()) {
   return Center(
     child: Container(
       width: MediaQuery.of(context).size.width * 0.9,
@@ -254,7 +259,14 @@ Widget productcard(context, String dicount, Icon iconfavour, producttitle,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [InkWell(onTap: () {getvalue=getindex;}, child: iconcart)],
+              children: [
+                InkWell(
+                    onTap: () {
+                      getvalue = getindex;
+                      submit();
+                    },
+                    child: iconcart)
+              ],
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.04,
