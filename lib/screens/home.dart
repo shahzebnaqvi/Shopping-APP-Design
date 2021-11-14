@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List producttitle = [];
   int _currentIndex = 0;
 
   void onTabTapped(int index) {
@@ -31,6 +30,14 @@ class _HomeState extends State<Home> {
             context, MaterialPageRoute(builder: (context) => Profile()));
       }
     });
+  }
+
+  var gettext1 = "";
+var getvalue = "";
+  List producttitlelst = ["Black T-Shirt", "Blue Jeans"];
+  List producttitlelstcart = [];
+  submit() {
+    setState(() {producttitlelstcart.add(getvalue)});
   }
 
   @override
@@ -143,29 +150,26 @@ class _HomeState extends State<Home> {
                   productcategory(context, "Shoes", "10 Pieces Left"),
                   productcategory(context, "Shoes", "10 Pieces Left"),
                 ])),
-            productcard(
-                context,
-                "30% off",
-                Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                ),
-                "Black T-Shirt",
-                "\$50",
-                Icon(
-                  Icons.shopping_cart,
-                  size: 30,
-                )),
-            productcard(
-                context,
-                "30% off",
-                Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                ),
-                "Black T-Shirt",
-                "\$50",
-                Icon(Icons.shopping_cart)),
+            ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: producttitlelst.length,
+                itemBuilder: (context, index) {
+                  return productcard(
+                      context,
+                      "30% off",
+                      Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                      ),
+                      producttitlelst[index],
+                      "\$50",
+                      Icon(
+                        Icons.shopping_cart,
+                        size: 30,
+                      ),
+                      index,getvalue);
+                }),
           ],
         ),
       ),
@@ -197,7 +201,7 @@ class _HomeState extends State<Home> {
 }
 
 Widget productcard(context, String dicount, Icon iconfavour, producttitle,
-    productprice, Icon iconcart) {
+    productprice, Icon iconcart, getindex,getvalue) {
   return Center(
     child: Container(
       width: MediaQuery.of(context).size.width * 0.9,
@@ -250,7 +254,7 @@ Widget productcard(context, String dicount, Icon iconfavour, producttitle,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [iconcart],
+              children: [InkWell(onTap: () {getvalue=getindex;}, child: iconcart)],
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.04,
