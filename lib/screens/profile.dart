@@ -36,6 +36,11 @@ class _ProfileState extends State<Profile> {
           listbottom("Phone Number", "090078601"),
           listbottom("Date of Birth", "1-1-1990"),
           listbottom("City", "Karachi"),
+          Icon(
+            Icons.favorite,
+            color: Colors.red,
+            size: 40,
+          )
         ]));
   }
 }
