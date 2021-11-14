@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:shoppingbasket/screens/about.dart';
 import 'package:shoppingbasket/screens/favourite.dart';
 import 'package:shoppingbasket/screens/mycart.dart';
+import 'package:shoppingbasket/screens/profile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,6 +14,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List producttitle = [];
+  int _currentIndex = 0;
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      print(_currentIndex);
+      if (_currentIndex == 0) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Home()));
+      } else if (_currentIndex == 1) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MyCart()));
+      } else if (_currentIndex == 2) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Profile()));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +62,10 @@ class _HomeState extends State<Home> {
             ListTile(
               leading: Icon(Icons.shopping_cart_outlined),
               title: const Text('Cart'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyCart()));
+              },
             ),
             ListTile(
               leading: Icon(Icons.favorite),
@@ -57,7 +80,7 @@ class _HomeState extends State<Home> {
               title: const Text('About'),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+                    context, MaterialPageRoute(builder: (context) => About()));
               },
             ),
           ],
@@ -147,6 +170,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -165,6 +189,8 @@ class _HomeState extends State<Home> {
           ),
         ],
         selectedItemColor: Colors.amber[800],
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
       ),
     );
   }
