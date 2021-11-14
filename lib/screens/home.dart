@@ -5,6 +5,12 @@ import 'package:shoppingbasket/screens/favourite.dart';
 import 'package:shoppingbasket/screens/mycart.dart';
 import 'package:shoppingbasket/screens/profile.dart';
 
+int countcart = 0;
+var gettext1 = "";
+var getvalue = "";
+List producttitlelst = ["Black T-Shirt", "Blue Jeans"];
+List producttitlelstcart = [];
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -32,14 +38,11 @@ class _HomeState extends State<Home> {
     });
   }
 
-  var gettext1 = "";
-  var getvalue = "";
-  List producttitlelst = ["Black T-Shirt", "Blue Jeans"];
-  List producttitlelstcart = [];
-  submit() {
+  submit(index) {
     setState(() {
-      producttitlelstcart.add(getvalue);
+      producttitlelstcart.add(index);
       print(producttitlelstcart);
+      countcart++;
     });
   }
 
@@ -135,7 +138,7 @@ class _HomeState extends State<Home> {
               child: CircleAvatar(
                 radius: 10,
                 backgroundColor: Colors.red,
-                child: Text("3"),
+                child: Text("${countcart}"),
               ),
             )
           ]),
@@ -158,22 +161,96 @@ class _HomeState extends State<Home> {
                 shrinkWrap: true,
                 itemCount: producttitlelst.length,
                 itemBuilder: (context, index) {
-                  return productcard(
-                      context,
-                      "30% off",
-                      Icon(
-                        Icons.favorite,
-                        color: Colors.red,
+                  Icon iconfavour = Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                  );
+
+                  String dicount = "30% off";
+
+                  String producttitle = producttitlelst[index];
+                  String productprice = "\$50";
+                  Icon iconcart = Icon(
+                    Icons.shopping_cart,
+                    size: 30,
+                  );
+
+                  return Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      margin: EdgeInsets.all(
+                          MediaQuery.of(context).size.width * 0.01),
+                      child: Card(
+                        child: Container(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.01),
+                          child: Column(children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                iconfavour,
+                                Container(
+                                  padding: EdgeInsets.all(
+                                      MediaQuery.of(context).size.width * 0.01),
+                                  child: Text(
+                                    dicount,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLHw-wMFrGfTnBKF3GZJzmllaWHWkWkr48GaXOdxTJ6MQB9EkeM8vudO4TBPA-BfJB5c&usqp=CAU"),
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  producttitle,
+                                  style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.05,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(productprice,
+                                    style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.05,
+                                    ))
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      submit(index);
+                                    },
+                                    child: iconcart)
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.04,
+                            )
+                          ]),
+                        ),
                       ),
-                      producttitlelst[index],
-                      "\$50",
-                      Icon(
-                        Icons.shopping_cart,
-                        size: 30,
-                      ),
-                      index,
-                      getvalue,
-                      submit());
+                    ),
+                  );
+                  ;
                 }),
           ],
         ),
@@ -203,79 +280,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
-
-Widget productcard(context, String dicount, Icon iconfavour, producttitle,
-    productprice, Icon iconcart, getindex, getvalue, submit()) {
-  return Center(
-    child: Container(
-      width: MediaQuery.of(context).size.width * 0.9,
-      margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                iconfavour,
-                Container(
-                  padding:
-                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
-                  child: Text(
-                    dicount,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                ),
-              ],
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.3,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLHw-wMFrGfTnBKF3GZJzmllaWHWkWkr48GaXOdxTJ6MQB9EkeM8vudO4TBPA-BfJB5c&usqp=CAU"),
-                    fit: BoxFit.cover),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  producttitle,
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.05,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(productprice,
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.05,
-                    ))
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                InkWell(
-                    onTap: () {
-                      getvalue = getindex;
-                      submit();
-                    },
-                    child: iconcart)
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-            )
-          ]),
-        ),
-      ),
-    ),
-  );
 }
 
 Widget productcategory(context, categ, categdetail) {
