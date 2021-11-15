@@ -9,6 +9,8 @@ import 'package:shoppingbasket/screens/profile.dart';
 import 'package:shoppingbasket/screens/data.dart';
 import 'dart:async';
 
+import 'package:shoppingbasket/screens/search.dart';
+
 int countcart = producttitlelstcart.length;
 var gettext1 = "";
 var getvalue = "";
@@ -42,7 +44,7 @@ class _HomeState extends State<Home> {
             context, MaterialPageRoute(builder: (context) => Home()));
       } else if (_currentIndex == 1) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MyCart()));
+            context, MaterialPageRoute(builder: (context) => Search()));
       } else if (_currentIndex == 2) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Profile()));
