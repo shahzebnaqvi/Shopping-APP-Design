@@ -200,9 +200,11 @@ class _HomeState extends State<Home> {
                       margin: EdgeInsets.all(
                           MediaQuery.of(context).size.width * 0.01),
                       child: Card(
+                        elevation: 6,
+                        shadowColor: Colors.black,
                         child: Container(
                           padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.01),
+                              MediaQuery.of(context).size.width * 0.02),
                           child: Column(children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,7 +234,7 @@ class _HomeState extends State<Home> {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(productimg),
-                                    fit: BoxFit.cover),
+                                    fit: BoxFit.fitWidth),
                               ),
                             ),
                             Row(

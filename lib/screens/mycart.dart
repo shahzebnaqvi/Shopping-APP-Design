@@ -36,16 +36,15 @@ class _MyCartState extends State<MyCart> {
                 shrinkWrap: true,
                 itemCount: producttitlelstcart.length,
                 itemBuilder: (context, index) {
-                  Icon iconfavour = Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                  );
-
-                  String dicount = "30% off";
-
                   String producttitle =
                       producttitlelst[producttitlelstcart[index]];
-                  String productprice = "\$50";
+                  String dicount =
+                      productdiscountlst[producttitlelstcart[index]];
+                  String productimg =
+                      productimagelst[producttitlelstcart[index]];
+
+                  String productprice =
+                      productpricelst[producttitlelstcart[index]];
                   Icon iconcart = Icon(
                     Icons.shopping_cart,
                     size: 30,
@@ -57,14 +56,15 @@ class _MyCartState extends State<MyCart> {
                       margin: EdgeInsets.all(
                           MediaQuery.of(context).size.width * 0.01),
                       child: Card(
+                        elevation: 6,
+                        shadowColor: Colors.black,
                         child: Container(
                           padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.01),
+                              MediaQuery.of(context).size.width * 0.02),
                           child: Column(children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                iconfavour,
                                 Container(
                                   padding: EdgeInsets.all(
                                       MediaQuery.of(context).size.width * 0.01),
@@ -84,9 +84,8 @@ class _MyCartState extends State<MyCart> {
                               height: MediaQuery.of(context).size.height * 0.3,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLHw-wMFrGfTnBKF3GZJzmllaWHWkWkr48GaXOdxTJ6MQB9EkeM8vudO4TBPA-BfJB5c&usqp=CAU"),
-                                    fit: BoxFit.cover),
+                                    image: AssetImage(productimg),
+                                    fit: BoxFit.fitWidth),
                               ),
                             ),
                             Row(

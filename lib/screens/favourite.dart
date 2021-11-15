@@ -10,6 +10,12 @@ class Favourite extends StatefulWidget {
 }
 
 class _FavouriteState extends State<Favourite> {
+  deleteit(index) {
+    setState(() {
+      producttitlelstfav.remove(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,16 +43,19 @@ class _FavouriteState extends State<Favourite> {
                 shrinkWrap: true,
                 itemCount: producttitlelstfav.length,
                 itemBuilder: (context, index) {
-                  Icon iconfavour = Icon(
-                    Icons.favorite,
+                  Icon icondelt = Icon(
+                    Icons.delete,
                     color: Colors.red,
                   );
-
-                  String dicount = "30% off";
-
+                  String dicount =
+                      productdiscountlst[producttitlelstfav[index]];
+                  String productimg =
+                      productimagelst[producttitlelstfav[index]];
                   String producttitle =
                       producttitlelst[producttitlelstfav[index]];
-                  String productprice = "\$50";
+                  String productprice =
+                      productpricelst[producttitlelstfav[index]];
+
                   Icon iconcart = Icon(
                     Icons.shopping_cart,
                     size: 30,
@@ -58,14 +67,20 @@ class _FavouriteState extends State<Favourite> {
                       margin: EdgeInsets.all(
                           MediaQuery.of(context).size.width * 0.01),
                       child: Card(
+                        elevation: 6,
+                        shadowColor: Colors.black,
                         child: Container(
                           padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.01),
+                              MediaQuery.of(context).size.width * 0.02),
                           child: Column(children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                iconfavour,
+                                InkWell(
+                                    onTap: () {
+                                      deleteit(index);
+                                    },
+                                    child: icondelt),
                                 Container(
                                   padding: EdgeInsets.all(
                                       MediaQuery.of(context).size.width * 0.01),
@@ -85,9 +100,8 @@ class _FavouriteState extends State<Favourite> {
                               height: MediaQuery.of(context).size.height * 0.3,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLHw-wMFrGfTnBKF3GZJzmllaWHWkWkr48GaXOdxTJ6MQB9EkeM8vudO4TBPA-BfJB5c&usqp=CAU"),
-                                    fit: BoxFit.cover),
+                                    image: AssetImage(productimg),
+                                    fit: BoxFit.fitWidth),
                               ),
                             ),
                             Row(
