@@ -185,10 +185,10 @@ class _HomeState extends State<Home> {
                 shrinkWrap: true,
                 itemCount: producttitlelst.length,
                 itemBuilder: (context, index) {
-                  String dicount = "30% off";
-
+                  String dicount = productdiscountlst[index];
+                  String productimg = productimagelst[index];
                   String producttitle = producttitlelst[index];
-                  String productprice = "\$50";
+                  String productprice = productpricelst[index];
                   Icon iconcart = Icon(
                     Icons.shopping_cart,
                     size: 30,
@@ -231,8 +231,7 @@ class _HomeState extends State<Home> {
                               height: MediaQuery.of(context).size.height * 0.3,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLHw-wMFrGfTnBKF3GZJzmllaWHWkWkr48GaXOdxTJ6MQB9EkeM8vudO4TBPA-BfJB5c&usqp=CAU"),
+                                    image: AssetImage(productimg),
                                     fit: BoxFit.cover),
                               ),
                             ),
