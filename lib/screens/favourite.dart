@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoppingbasket/screens/home.dart';
+
+import 'package:shoppingbasket/screens/data.dart';
 
 class Favourite extends StatefulWidget {
   const Favourite({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class _FavouriteState extends State<Favourite> {
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: producttitlelstcart.length,
+                itemCount: producttitlelstfav.length,
                 itemBuilder: (context, index) {
                   Icon iconfavour = Icon(
                     Icons.favorite,
@@ -44,7 +45,7 @@ class _FavouriteState extends State<Favourite> {
                   String dicount = "30% off";
 
                   String producttitle =
-                      producttitlelst[producttitlelstcart[index]];
+                      producttitlelst[producttitlelstfav[index]];
                   String productprice = "\$50";
                   Icon iconcart = Icon(
                     Icons.shopping_cart,

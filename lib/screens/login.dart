@@ -26,6 +26,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           "Login",
@@ -47,10 +48,9 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 gape(context),
-                Image.network(
-                  "https://i.pinimg.com/originals/5b/6f/88/5b6f887e44761a46ace6e989c085c5d3.gif",
-                  height: 125.0,
-                  width: 125.0,
+                Image.asset(
+                  "assets/images/1.gif",
+                  width: MediaQuery.of(context).size.width,
                 ),
                 gape(context),
                 TextField(

@@ -4,12 +4,16 @@ import 'package:shoppingbasket/screens/about.dart';
 import 'package:shoppingbasket/screens/favourite.dart';
 import 'package:shoppingbasket/screens/mycart.dart';
 import 'package:shoppingbasket/screens/profile.dart';
+import 'package:shoppingbasket/screens/data.dart';
 
 int countcart = 0;
 var gettext1 = "";
 var getvalue = "";
-List producttitlelst = ["Black T-Shirt", "Blue Jeans"];
-List producttitlelstcart = [];
+
+Icon iconfavour = Icon(
+  Icons.favorite_border,
+  color: Colors.red,
+);
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -43,6 +47,26 @@ class _HomeState extends State<Home> {
       producttitlelstcart.add(index);
       print(producttitlelstcart);
       countcart++;
+    });
+  }
+
+  submitfav(index) {
+    setState(() {
+      if (producttitlelstfav.contains(index)) {
+        producttitlelstfav.remove(index);
+        iconfavour = Icon(
+          Icons.favorite_border,
+          color: Colors.red,
+        );
+      } else {
+        producttitlelstfav.add(index);
+        print(producttitlelstfav);
+
+        iconfavour = Icon(
+          Icons.favorite,
+          color: Colors.red,
+        );
+      }
     });
   }
 
@@ -161,11 +185,6 @@ class _HomeState extends State<Home> {
                 shrinkWrap: true,
                 itemCount: producttitlelst.length,
                 itemBuilder: (context, index) {
-                  Icon iconfavour = Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                  );
-
                   String dicount = "30% off";
 
                   String producttitle = producttitlelst[index];
@@ -188,7 +207,11 @@ class _HomeState extends State<Home> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                iconfavour,
+                                InkWell(
+                                    onTap: () {
+                                      submitfav(index);
+                                    },
+                                    child: iconfavour),
                                 Container(
                                   padding: EdgeInsets.all(
                                       MediaQuery.of(context).size.width * 0.01),
