@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoppingbasket/screens/checkout.dart';
 import 'package:shoppingbasket/screens/data.dart';
 
 class MyCart extends StatefulWidget {
@@ -114,8 +115,20 @@ class _MyCartState extends State<MyCart> {
                               ],
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.blue[800]),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                Checkout(indexvalue: index),
+                                          ));
+                                    },
+                                    child: Text("Check out")),
                                 InkWell(
                                     onTap: () {
                                       deleteit(index);
