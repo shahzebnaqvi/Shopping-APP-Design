@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:shoppingbasket/screens/about.dart';
 import 'package:shoppingbasket/screens/favourite.dart';
+import 'package:shoppingbasket/screens/login.dart';
 import 'package:shoppingbasket/screens/mycart.dart';
+import 'package:shoppingbasket/screens/product.dart';
 import 'package:shoppingbasket/screens/profile.dart';
 import 'package:shoppingbasket/screens/data.dart';
+import 'dart:async';
 
-int countcart = 0;
+int countcart = producttitlelstcart.length;
 var gettext1 = "";
 var getvalue = "";
 
@@ -23,6 +26,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 1), () => {countcart = producttitlelstcart.length});
+  }
+
   int _currentIndex = 0;
 
   void onTabTapped(int index) {
@@ -46,7 +54,7 @@ class _HomeState extends State<Home> {
     setState(() {
       producttitlelstcart.add(index);
       print(producttitlelstcart);
-      countcart++;
+      countcart = producttitlelstcart.length;
     });
   }
 
@@ -94,7 +102,10 @@ class _HomeState extends State<Home> {
             ListTile(
               leading: Icon(Icons.logout),
               title: const Text('Logout'),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => Login()));
+              },
             ),
             ListTile(
               leading: Icon(Icons.shopping_cart_outlined),
@@ -240,13 +251,23 @@ class _HomeState extends State<Home> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  producttitle,
-                                  style: TextStyle(
-                                      fontSize:
-                                          MediaQuery.of(context).size.width *
-                                              0.05,
-                                      fontWeight: FontWeight.bold),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              Product(indexvalue: index),
+                                        ));
+                                  },
+                                  child: Text(
+                                    producttitle,
+                                    style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.05,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                                 Text(productprice,
                                     style: TextStyle(

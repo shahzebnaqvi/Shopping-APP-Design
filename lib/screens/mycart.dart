@@ -9,6 +9,12 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+  deleteit(index) {
+    setState(() {
+      producttitlelstcart.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,9 +51,9 @@ class _MyCartState extends State<MyCart> {
 
                   String productprice =
                       productpricelst[producttitlelstcart[index]];
-                  Icon iconcart = Icon(
-                    Icons.shopping_cart,
-                    size: 30,
+                  Icon icondelt = Icon(
+                    Icons.delete,
+                    color: Colors.red,
                   );
 
                   return Center(
@@ -110,7 +116,11 @@ class _MyCartState extends State<MyCart> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                InkWell(onTap: () {}, child: iconcart)
+                                InkWell(
+                                    onTap: () {
+                                      deleteit(index);
+                                    },
+                                    child: icondelt),
                               ],
                             ),
                             SizedBox(
