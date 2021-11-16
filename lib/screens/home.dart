@@ -95,8 +95,7 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(),
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDfSwap3iAYqS7YoldaB-ZT92aoKU9KymmtbNV3gjeJ5wI9Wed4AT8jANOQ3C6k3mI_XQ&usqp=CAU"),
+                    backgroundImage: AssetImage("assets/images/avatar.jpg"),
                   ),
                   title: Text("Username"),
                   subtitle: Text("abcuser@gmail.com"),
@@ -334,8 +333,8 @@ Widget productcategory(context, categ, categdetail) {
     child: Container(
       padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
       child: Row(children: [
-        Image.network(
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLHw-wMFrGfTnBKF3GZJzmllaWHWkWkr48GaXOdxTJ6MQB9EkeM8vudO4TBPA-BfJB5c&usqp=CAU",
+        Image.asset(
+          "assets/images/images1.jpg",
           width: MediaQuery.of(context).size.width * 0.2,
         ),
         Column(

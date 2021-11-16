@@ -10,6 +10,7 @@ class Checkout extends StatefulWidget {
 }
 
 class _CheckoutState extends State<Checkout> {
+  // String count = containsKey[x];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,26 +29,48 @@ class _CheckoutState extends State<Checkout> {
             children: [
               Text("Cart Overview",
                   style: TextStyle(fontWeight: FontWeight.bold)),
-              Card(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    child: Image(
-                      image: AssetImage(
-                        productimagelst[widget.indexvalue],
+              ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: producttitlelstcart.length,
+                itemBuilder: (context, index) {
+                  String producttitle =
+                      producttitlelst[producttitlelstcart[index]];
+                  String productimg =
+                      productimagelst[producttitlelstcart[index]];
+                  String productprice =
+                      productpricelst[producttitlelstcart[index]];
+                  return Card(
+                    child: ListTile(
+                      leading: Container(
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(productimg),
+                              fit: BoxFit.fitWidth),
+                        ),
                       ),
+                      title: Text(
+                        producttitle,
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        productprice,
+                        style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.03,
+                        ),
+                      ),
+                      trailing: Wrap(children: [
+                        Icon(Icons.add_circle),
+                        Text("4"),
+                        Icon(Icons.remove_circle)
+                      ]),
                     ),
-                  ),
-                  title: Text(
-                    producttitlelst[widget.indexvalue],
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.05,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(productpricelst[widget.indexvalue],
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.04,
-                      )),
-                ),
+                  );
+                },
               ),
             ],
           ),
