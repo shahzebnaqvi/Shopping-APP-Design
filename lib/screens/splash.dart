@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 10),
         () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Login())));
   }
@@ -22,6 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Image.asset(
         "assets/images/1.gif",
         width: MediaQuery.of(context).size.width,
