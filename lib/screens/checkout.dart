@@ -11,6 +11,21 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
   // String count = containsKey[x];
+  int countcartproduct = producttitlelstcart.length;
+
+  String printText(int inde) {
+    int ab = 0;
+
+    for (int a in producttitlelstcart) {
+      if (a == inde) {
+        ab++;
+      }
+    }
+    String text = "${ab}";
+    print(text);
+    return '$text';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,14 +47,14 @@ class _CheckoutState extends State<Checkout> {
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: producttitlelstcart.length,
+                itemCount: producttitlelstcartarrange.length,
                 itemBuilder: (context, index) {
                   String producttitle =
-                      producttitlelst[producttitlelstcart[index]];
+                      producttitlelst[producttitlelstcartarrange[index]];
                   String productimg =
-                      productimagelst[producttitlelstcart[index]];
+                      productimagelst[producttitlelstcartarrange[index]];
                   String productprice =
-                      productpricelst[producttitlelstcart[index]];
+                      productpricelst[producttitlelstcartarrange[index]];
                   return Card(
                     child: ListTile(
                       leading: Container(
@@ -65,13 +80,27 @@ class _CheckoutState extends State<Checkout> {
                       ),
                       trailing: Wrap(children: [
                         Icon(Icons.add_circle),
-                        Text("4"),
+                        Text(printText(index)),
                         Icon(Icons.remove_circle)
                       ]),
                     ),
                   );
                 },
               ),
+              Container(
+                margin:
+                    EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Total"),
+                      Text("\$2220"),
+                    ]),
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.red),
+                  onPressed: () {},
+                  child: Text("Address Details"))
             ],
           ),
         ),

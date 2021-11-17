@@ -60,3 +60,4 @@ List productdiscountlst = [
 ];
 List producttitlelstcart = [];
 List producttitlelstfav = [];
+var producttitlelstcartarrange = Set.of(producttitlelstcart).toList();

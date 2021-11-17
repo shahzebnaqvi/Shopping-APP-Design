@@ -33,11 +33,6 @@ class _LoginState extends State<Login> {
           style: TextStyle(color: Colors.pink),
         ),
         backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         child: Center(
